@@ -72,7 +72,7 @@ def _default_jobs(repo: Path, ckpt_dir: Path) -> list[dict]:
             "id": "oag_pf_l2",
             "cwd": repo / "OAG" / "evaluator",
             "script": "eval_pf_l2_test_ndcg_mrr.py",
-            "checkpoint": d / "PF_OAG_XLNet_L2_ssta_rota_qk_rte1_s43_L2_lowest_valid_loss",
+            "checkpoint": d / "PF_XLNet_L2_nglf_r111_s111_s43_L2_lowest_valid_loss",
         },
         {
             "id": "ogbn_mag",
@@ -432,6 +432,20 @@ def main() -> int:
     )
     p.add_argument("--ckpt-dir", type=Path, default=default_ckpt, help="Checkpoint directory.")
     p.add_argument(
+        "--htag-arxiv-checkpoint",
+        type=Path,
+        default=None,
+        help=(
+            "Override the htag_arxiv checkpoint path (use the real .pt basename so HTAG eval infers conv/rota correctly)."
+        ),
+    )
+    p.add_argument(
+        "--pf-l2-checkpoint",
+        type=Path,
+        default=None,
+        help="Override the oag_pf_l2 checkpoint path (file or THGFM save without .pt).",
+    )
+    p.add_argument(
         "--seeds",
         type=str,
         default="",
@@ -471,6 +485,24 @@ def main() -> int:
     multi_seed = len(seeds) > 1
 
     jobs = _default_jobs(repo, args.ckpt_dir)
+    if args.htag_arxiv_checkpoint is not None:
+        hck = args.htag_arxiv_checkpoint.expanduser().resolve()
+        if not hck.is_file():
+            print(f"--htag-arxiv-checkpoint not found: {hck}", file=sys.stderr)
+            return 2
+        for j in jobs:
+            if j["id"] == "htag_arxiv":
+                j["checkpoint"] = hck
+                break
+    if args.pf_l2_checkpoint is not None:
+        p2 = args.pf_l2_checkpoint.expanduser().resolve()
+        if not p2.is_file():
+            print(f"--pf-l2-checkpoint not found: {p2}", file=sys.stderr)
+            return 2
+        for j in jobs:
+            if j["id"] == "oag_pf_l2":
+                j["checkpoint"] = p2
+                break
     only = {s.strip() for s in args.only.split(",") if s.strip()}
     if only:
         jobs = [j for j in jobs if j["id"] in only]

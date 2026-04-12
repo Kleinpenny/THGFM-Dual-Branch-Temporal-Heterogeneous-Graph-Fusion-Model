@@ -208,9 +208,6 @@ python scripts/eval_best_model_save.py --seeds 43,44,45 --cuda 0
 # Quick smoke test
 python scripts/eval_best_model_save.py --smoke --seeds 43 --cuda 0
 
-# Specific benchmarks only
-python scripts/eval_best_model_save.py --seeds 43 --only htag_arxiv,oag_pv --cuda 0
-
 # Dry run (print commands without executing)
 python scripts/eval_best_model_save.py --dry-run --seeds 43,44
 ```
