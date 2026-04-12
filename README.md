@@ -12,7 +12,7 @@ Official implementation of the paper:
 >
 > *Anonymous Authors*
 >
-> International Semantic Web Conference (ISWC), 2026
+> 
 
 <!-- TODO: Uncomment and update after camera-ready -->
 <!-- > [[Paper]](https://arxiv.org/abs/xxxx.xxxxx) [[Slides]](link) [[Poster]](link) -->
@@ -237,7 +237,7 @@ If you find this work useful, please cite our paper:
 @inproceedings{thgfm2026,
   title     = {Dual-Branch Temporal Heterogeneous Graph Fusion Model},
   author    = {Anonymous},
-  booktitle = {Proceedings of the International Semantic Web Conference (ISWC)},
+  booktitle = {Proceedings of xxx},
   year      = {2026}
 }
 ```
