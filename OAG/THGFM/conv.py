@@ -503,6 +503,13 @@ class DRSFConv(MessagePassing):
     Main difference: it precomputes per-edge Q/K/V tensors by node type first, then
     applies relation-specific transforms in a single loop over relation ids.
     This removes the source_type x target_type x relation_type nested loops.
+
+    Complexity (batch-local N_b, E_b; matches the discussion table labeled
+    tab:discussion-complexity in docs/main.tex):
+    ``message()`` evaluates an RTTA-style path (typed Q/K/V, one pass over
+    relations, per-source-type softmax) together with an SSTA-style path (typed
+    latents plus shared Q/K/V on the same edges). Subclasses only change
+    ``update()`` (fusion overhead).
     """
     def __init__(self, in_dim, out_dim, num_types, num_relations, n_heads, dropout = 0.2, use_norm = True, use_RTE = True, **kwargs):
         super(DRSFConv, self).__init__(node_dim=0, aggr='add', **kwargs)
