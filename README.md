@@ -243,7 +243,7 @@ If you find this work useful, please cite our paper:
 
 ## Acknowledgments
 
-This codebase builds upon the following open-source projects:
+This codebase is built upon the following open-source projects:
 
 - [PyTorch Geometric](https://github.com/pyg-team/pytorch_geometric)
 - [DGL](https://github.com/dmlc/dgl)
