@@ -198,7 +198,7 @@ def main() -> None:
     parser.add_argument(
         "--ogbn_mag_dir",
         type=str,
-        default="/home/yxpeng/DATA/THGFM-Datasets/OGBN/ogbn_mag",
+        default=os.path.join(default_project_root, "data", "ogbn_mag"),
         help="Path to extracted ogbn_mag directory.",
     )
     parser.add_argument(

@@ -9,8 +9,10 @@ from dataclasses import dataclass
 from pathlib import Path
 
 
-DEFAULT_PROJECT_DIR = Path("/home/yxpeng/Projects/Papers/2026/THGFM-Dual-Branch-Temporal-Heterogeneous-Graph-Fusion-Model/OGBN")
-DEFAULT_CONDA_SH = Path("/home/yxpeng/anaconda3/etc/profile.d/conda.sh")
+DEFAULT_PROJECT_DIR = Path(__file__).resolve().parents[2]
+DEFAULT_CONDA_SH = Path("~/anaconda3/etc/profile.d/conda.sh")
+DEFAULT_SYSTEMD_USER = os.environ.get("USER", "nobody")
+DEFAULT_SYSTEMD_SLICE = f"python-{DEFAULT_SYSTEMD_USER}.slice"
 
 
 @dataclass(frozen=True)
@@ -36,8 +38,8 @@ def parse_args() -> argparse.Namespace:
     p.add_argument("--project-dir", default=str(DEFAULT_PROJECT_DIR))
     p.add_argument("--conda-sh", default=str(DEFAULT_CONDA_SH))
     p.add_argument("--conda-env", default="thgfm")
-    p.add_argument("--systemd-slice", default="python-yxpeng.slice")
-    p.add_argument("--systemd-user", default="yxpeng")
+    p.add_argument("--systemd-slice", default=DEFAULT_SYSTEMD_SLICE)
+    p.add_argument("--systemd-user", default=DEFAULT_SYSTEMD_USER)
     p.add_argument(
         "--inherit-env",
         nargs="*",

@@ -34,7 +34,7 @@ Use `--event` to choose one of:
 Recommended run directory:
 
 ```bash
-cd /home/yxpeng/Projects/Papers/2026/THGFM-Dual-Branch-Temporal-Heterogeneous-Graph-Fusion-Model/OAG
+cd OAG
 ```
 
 ---

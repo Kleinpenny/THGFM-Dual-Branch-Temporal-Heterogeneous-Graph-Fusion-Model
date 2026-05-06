@@ -10,8 +10,10 @@ from dataclasses import dataclass
 from pathlib import Path
 
 
-DEFAULT_PROJECT_DIR = Path("/home/yxpeng/Projects/Papers/2026/THGFM-Dual-Branch-Temporal-Heterogeneous-Graph-Fusion-Model/OAG")
-DEFAULT_CONDA_SH = Path("/home/yxpeng/anaconda3/etc/profile.d/conda.sh")
+DEFAULT_PROJECT_DIR = Path(__file__).resolve().parents[2]
+DEFAULT_CONDA_SH = Path("~/anaconda3/etc/profile.d/conda.sh")
+DEFAULT_SYSTEMD_USER = os.environ.get("USER", "nobody")
+DEFAULT_SYSTEMD_SLICE = f"python-{DEFAULT_SYSTEMD_USER}.slice"
 
 
 @dataclass(frozen=True)
@@ -67,12 +69,12 @@ def parse_args() -> argparse.Namespace:
     )
     parser.add_argument(
         "--systemd-slice",
-        default="python-yxpeng.slice",
+        default=DEFAULT_SYSTEMD_SLICE,
         help="Target systemd slice.",
     )
     parser.add_argument(
         "--systemd-user",
-        default="yxpeng",
+        default=DEFAULT_SYSTEMD_USER,
         help="User property passed to transient systemd services.",
     )
     parser.add_argument(
