@@ -8,9 +8,9 @@
 
 Official implementation of the paper:
 
-> **Dual-Branch Temporal Heterogeneous Graph Fusion Model**
+> **THGFM: Dual-Branch Temporal Heterogeneous Graph Fusion Model**
 >
-> *Anonymous Authors*
+> *Yixin Peng, Diego Collarana, Er Jin, and Stefan Decker*
 >
 > 
 
