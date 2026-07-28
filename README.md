@@ -232,8 +232,8 @@ If you find this work useful, please cite our paper:
 
 ```bibtex
 @inproceedings{thgfm2026,
-  title     = {Dual-Branch Temporal Heterogeneous Graph Fusion Model},
-  author    = {Anonymous},
+  title     = {THGFM: Dual-Branch Temporal Heterogeneous Graph Fusion Model},
+  author    = {Yixin Peng, Diego Collarana, Er Jin, and Stefan Decker},
   booktitle = {Proceedings of xxx},
   year      = {2026}
 }
