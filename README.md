@@ -1,4 +1,4 @@
-# THGFM: Dual-Branch Temporal Heterogeneous Graph Fusion Model
+# [ISWC 2026 Oral] THGFM: Dual-Branch Temporal Heterogeneous Graph Fusion Model
 
 <!-- [![ISWC](https://img.shields.io/badge/ISWC-2026-blue)](https://iswc2026.semanticweb.org/) -->
 <!-- [![Paper](https://img.shields.io/badge/Paper-PDF-red)](https://arxiv.org/abs/xxxx.xxxxx) -->
