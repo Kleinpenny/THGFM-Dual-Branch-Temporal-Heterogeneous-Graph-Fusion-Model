@@ -13,7 +13,7 @@
 
 **[Paper (arXiv)](https://arxiv.org/abs/2607.27303) · [PDF](https://arxiv.org/pdf/2607.27303) · [Repository](https://github.com/Kleinpenny/THGFM-Dual-Branch-Temporal-Heterogeneous-Graph-Fusion-Model) · [Citation](#citation)**
 
-> **TL;DR:** THGFM learns from temporal heterogeneous graphs with **two complementary attention branches**: one shares information across node types, while the other preserves relation-specific semantics. **Rotary Temporal Attention (RoTA)** introduces relative time directly into query–key matching, and **type-conditioned, non-competitive gates** combine the two views at every layer.
+> **TL;DR:** THGFM learns from temporal heterogeneous graphs with **two complementary attention branches**: one shares information across node types, while the other preserves relation-specific semantics. **Rotary Temporal Attention (RoTA)** introduces relative time directly into query–key attention scoring, and **type-conditioned, non-competitive gates** combine the two views at every layer.
 
 This is the **official implementation** of *THGFM: Dual-Branch Temporal Heterogeneous Graph Fusion Model*, presented at the **25th International Semantic Web Conference (ISWC 2026)**.
 
@@ -61,13 +61,7 @@ THGFM addresses both through **layer-wise dual-branch temporal attention and fus
 
 Both branches operate **in parallel within every THGFM layer**; neither replaces the other.
 
-<p align="center">
-  <img src="assets/SSTA.png" width="45%" alt="Shared-Space Temporal Attention (SSTA)" />
-  &nbsp;&nbsp;
-  <img src="assets/RTTA.png" width="45%" alt="Relational Type-Partitioned Temporal Attention (RTTA)" />
-  <br />
-  <em>Left: SSTA shares an attention space across types. Right: RTTA retains type- and relation-dependent projections and normalization.</em>
-</p>
+<img width="1482" height="546" alt="image" src="https://github.com/user-attachments/assets/c2dfb01b-e71e-4f0a-995d-25f57b863659" />
 
 ### 2. Rotary Temporal Attention (RoTA): time inside attention
 
@@ -86,6 +80,8 @@ $$
 $$
 
 where \(t_i\) is the target's context time and \(c\) is the time offset used by the temporal encoding. If the relation carries an observed timestamp, that timestamp determines \(t_j\); otherwise, \(t_j\) inherits the target context time. In the latter case, \(\Delta t_{ji}=c\).
+
+<img width="1488" height="540" alt="image" src="https://github.com/user-attachments/assets/b02086e9-d4af-4599-93fa-75485a0ec4dd" />
 
 **Conceptually**, RoTA applies opposite half-angle rotations to the query and key:
 
@@ -106,6 +102,8 @@ and computes attention from their rotated dot product. This makes the pairwise t
 After the two branches produce their representations, DRSF combines them. In particular, **Type-Conditioned Non-Competitive Gated Sum Fusion (TC-NGSF)** uses **independent, feature-wise gates**, conditioned on the **target-node type**, for the shared and specialized outputs.
 
 Unlike a two-way softmax that forces the branches to compete for a fixed total weight, independent sigmoid gates allow **both branches to be emphasized simultaneously** when both provide useful evidence.
+
+<img width="1480" height="558" alt="image" src="https://github.com/user-attachments/assets/7885a173-5694-4732-a044-17a4cdf211c3" />
 
 <p align="center">
   <img src="assets/DRSF%20Fusion.png" width="65%" alt="Dual-Path Relational-Shared Fusion (DRSF) operators" />
